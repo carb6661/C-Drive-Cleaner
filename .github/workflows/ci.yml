@@ -1,0 +1,57 @@
+name: PowerShell CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse PowerShell script
+        shell: pwsh
+        run: |
+          $tokens = $null
+          $errors = $null
+          [System.Management.Automation.Language.Parser]::ParseFile(
+            "$PWD\SafeTempCleaner.ps1",
+            [ref]$tokens,
+            [ref]$errors
+          ) | Out-Null
+          if ($errors.Count -gt 0) {
+            $errors | Format-List
+            throw 'PowerShell syntax validation failed.'
+          }
+
+      - name: Verify safety boundaries
+        shell: pwsh
+        run: |
+          $script = Get-Content -Raw .\SafeTempCleaner.ps1
+          $required = @(
+            'SoftwareDistribution\Download',
+            "Read-Host",
+            "-cne 'CLEAN'",
+            'Remove-Item -LiteralPath'
+          )
+          foreach ($pattern in $required) {
+            if ($script -notmatch [regex]::Escape($pattern)) {
+              throw "Missing safety boundary: $pattern"
+            }
+          }
+          $forbidden = @(
+            'Remove-Item $env:',
+            'Format-Volume',
+            'Clear-Disk',
+            'Remove-Partition',
+            'diskpart'
+          )
+          foreach ($pattern in $forbidden) {
+            if ($script -match [regex]::Escape($pattern)) {
+              throw "Forbidden destructive pattern: $pattern"
+            }
+          }

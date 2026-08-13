@@ -1,0 +1,11 @@
+# Windows / editors
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+
+# PowerShell test artifacts
+TestResults/
+*.clixml
+*.log
+
