@@ -19,7 +19,7 @@ jobs:
           $tokens = $null
           $errors = $null
           [System.Management.Automation.Language.Parser]::ParseFile(
-            "$PWD\SafeTempCleaner.ps1",
+            "$PWD\C盘清理家.ps1",
             [ref]$tokens,
             [ref]$errors
           ) | Out-Null
@@ -31,7 +31,7 @@ jobs:
       - name: Verify safety boundaries
         shell: pwsh
         run: |
-          $script = Get-Content -Raw .\SafeTempCleaner.ps1
+          $script = Get-Content -Raw .\C盘清理家.ps1
           $required = @(
             'SoftwareDistribution\Download',
             "Read-Host",

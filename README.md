@@ -1,4 +1,4 @@
-# SafeTempCleaner
+# C盘清理家
 
 一个面向 Windows 10/11 的开源 PowerShell 安全清理脚本。它专注于清理可重新生成的系统垃圾，同时通过固定白名单、执行前预览和强制人工确认降低误删风险。
 
@@ -30,7 +30,7 @@
 
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\SafeTempCleaner.ps1
+.\C盘清理家.ps1
 ```
 
 `Set-ExecutionPolicy -Scope Process` 只影响当前 PowerShell 窗口，关闭窗口后自动失效，不会永久修改系统策略。
@@ -51,8 +51,8 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ## 项目结构
 
 ```text
-SafeTempCleaner/
-├── SafeTempCleaner.ps1       # 主脚本
+C盘清理家/
+├── C盘清理家.ps1             # 主脚本
 ├── README.md                 # 中文说明
 ├── SECURITY.md               # 安全策略与风险说明
 ├── CONTRIBUTING.md           # 贡献指南
@@ -68,4 +68,3 @@ SafeTempCleaner/
 ## 许可证
 
 [MIT License](LICENSE)
-

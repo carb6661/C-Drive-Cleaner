@@ -80,7 +80,7 @@ $targets = @(
     [pscustomobject]@{ Name = 'Windows Update 下载缓存'; Path = $updateDownload; NeedsAdmin = $true }
 )
 
-Write-Host "`nSafeTempCleaner 安全扫描" -ForegroundColor Cyan
+Write-Host "`nC盘清理家 安全扫描" -ForegroundColor Cyan
 Write-Host '----------------------------------------'
 $totalBytes = 0L
 foreach ($target in $targets) {

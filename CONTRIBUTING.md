@@ -1,6 +1,6 @@
 # 贡献指南
 
-感谢参与 SafeTempCleaner。
+感谢参与 C盘清理家。
 
 1. Fork 仓库并创建功能分支。
 2. 保持 Windows PowerShell 5.1 兼容。
@@ -12,7 +12,7 @@
 $tokens = $null
 $errors = $null
 [System.Management.Automation.Language.Parser]::ParseFile(
-    "$PWD\SafeTempCleaner.ps1",
+    "$PWD\C盘清理家.ps1",
     [ref]$tokens,
     [ref]$errors
 ) | Out-Null
@@ -20,4 +20,3 @@ $errors
 ```
 
 请使用清晰的提交信息，并同步更新 README 或 CHANGELOG。
-
